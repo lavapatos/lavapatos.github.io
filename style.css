@@ -1,0 +1,18 @@
+@font-face {
+    font-family: 'MorePerfectDOSVGA';
+    src: url('fonts/MorePerfectDOSVGA.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+/*.text-ruso {
+    font-family: 'MorePerfectDOSVGA', sans-serif;
+}*/
+
+
+
+* {
+    font-size: 100%;
+    font-family: 'MorePerfectDOSVGA', sans-serif;
+   }
+   
