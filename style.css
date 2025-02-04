@@ -15,4 +15,10 @@
 /* .myName {
     font-size: 250%;
 } */
+
+/* .card:hover {
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    transform: translateY(-5px);
+    transition: transform 0.3s, box-shadow 0.3s;
+} */
    
