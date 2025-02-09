@@ -84,8 +84,9 @@
         </div>
       </div>
     </div>
-  </section> 
-  
+  </section>
+
+
   <!--work-->
   <section class="py-3">
     <div class="container">
@@ -98,16 +99,18 @@
           <div class="circle" style="left: 99%;"></div>
         </div>
       </div>
+      <div class="pixel-border-card">
+        <h5 class="text-center mb-4">worktitle</h5>
+        <div class="d-flex flex-column justify-content-between h-100">
+            <p class="mb-3">
+                blablabla
+            </p>
+            <div class="mt-auto">
+                <div class="badge bg-dark mb-2">tag1</div>
+                <div class="badge bg-dark">tag2</div>
+            </div>
+        </div>
     </div>
-  </section>
-
-
-
-
-  <!--work-->
-  <section>
-    <div class="container">
-      <h1>WORK EXPERIENCE</h1>
     </div>
   </section>
 
@@ -134,5 +137,28 @@
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous">
     </script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+      const card = document.querySelector(".pixel-border-card");
+      const circles = document.querySelectorAll(".circle");
+      
+      circles.forEach(circle => {
+          circle.addEventListener("click", (e) => {
+              e.stopPropagation();
+              const rect = circle.getBoundingClientRect();
+              card.style.display = "block";
+              card.style.top = `${rect.bottom + 5}px`;
+              card.style.left = `${rect.left - 50}px`; 
+          });
+      });
+  
+      document.addEventListener("click", (e) => {
+          if (!card.contains(e.target)) {
+              card.style.display = "none";
+          }
+      });
+  });
+  </script>
 </body>
 </html>
