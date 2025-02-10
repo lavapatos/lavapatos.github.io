@@ -127,38 +127,11 @@
       </div>
     </div>
   </section>
-
-
   
-  
-    
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-      crossorigin="anonymous">
-    </script>
-
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-      const card = document.querySelector(".pixel-border-card");
-      const circles = document.querySelectorAll(".circle");
-      
-      circles.forEach(circle => {
-          circle.addEventListener("click", (e) => {
-              e.stopPropagation();
-              const rect = circle.getBoundingClientRect();
-              card.style.display = "block";
-              card.style.top = `${rect.bottom + 5}px`;
-              card.style.left = `${rect.left - 50}px`; 
-          });
-      });
-  
-      document.addEventListener("click", (e) => {
-          if (!card.contains(e.target)) {
-              card.style.display = "none";
-          }
-      });
-  });
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous">
   </script>
+  <script src="script.js"></script>
 </body>
 </html>
