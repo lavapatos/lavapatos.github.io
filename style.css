@@ -25,6 +25,10 @@
     transition: transform 0.3s, box-shadow 0.3s;
 } */
 
+.timeline-container {
+  min-height: 150px;
+}
+
 .timeline-line {
   position: relative;
   height: 10px;
@@ -49,6 +53,8 @@
   transform: scale(1.25);
 }
 
+
+
 .pixel-border-card {
   display: none;
   position: absolute;
@@ -56,10 +62,15 @@
   border: 4px solid #000;
   background: white;
   padding: 1.5rem;
-  max-width: 250px;
+  width: 250px;
   box-shadow: 8px 8px 0 #000;
-  transform: translateX(-25%);
+  left: 0;
+  bottom: 40px;
+  white-space: normal;
+  word-wrap: break-word;
 }
+
+
 
 
 
