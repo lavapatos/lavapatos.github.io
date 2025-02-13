@@ -11,6 +11,9 @@
     font-size: 100%;
     font-family: 'MorePerfectDOSVGA', sans-serif;
 }
+.container {
+  position: relative;
+}
 
 /* .myName {
     font-size: 250%;
@@ -50,36 +53,13 @@
   display: none;
   position: absolute;
   z-index: 1000;
-  transition: opacity 0.3s;
   border: 4px solid #000;
   background: white;
   padding: 1.5rem;
-  margin: 2rem auto;
   max-width: 250px;
-  min-height: 300px;
   box-shadow: 8px 8px 0 #000;
+  transform: translateX(-25%);
 }
 
-.pixel-border-card::before {
-  content: "";
-  position: absolute;
-  top: -8px;
-  left: -8px;
-  right: -8px;
-  bottom: -8px;
-  background: repeating-linear-gradient(
-      0deg,
-      #000 0px,
-      #000 4px,
-      transparent 4px,
-      transparent 8px
-  ), 
-  repeating-linear-gradient(
-      90deg,
-      #000 0px,
-      #000 4px,
-      transparent 4px,
-      transparent 8px
-  );
-  z-index: -1;
-}
+
+
