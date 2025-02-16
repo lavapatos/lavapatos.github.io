@@ -37,6 +37,34 @@
   transition: margin-top 0.3s ease;
 }
 
+.timeline-label {
+  position: absolute;
+  top: 25px;
+  transform: translateX(-10%);
+  width: max-content;
+  max-width: 200px;
+  text-align: center;
+  line-height: 1.2;
+  white-space: normal;
+  word-wrap: break-word;
+}
+
+.timeline-label:nth-child(2) {
+  text-align: left;
+  transform: translateX(0%);
+  max-width: 210px;
+  left: 0% !important;
+  padding-right: 20px;
+}
+
+.timeline-label:nth-child(8) {
+  text-align: right;
+  transform: translateX(-90%);
+  max-width: 200px;
+  left: 100% !important;
+  padding-left: 20px;
+}
+
 .circle {
   position: absolute;
   top: -12px;
