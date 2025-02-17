@@ -5,6 +5,10 @@
     font-style: normal;
 }
 
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
 
 
 * {
@@ -52,7 +56,7 @@
 .timeline-label:nth-child(2) {
   text-align: left;
   transform: translateX(0%);
-  max-width: 210px;
+  max-width: 228px;
   left: 0% !important;
   padding-right: 20px;
 }
@@ -106,7 +110,11 @@
   transform: translateX(-50%);
   z-index: 1000;
   width: 250px;
-  margin-bottom: 30px;
+  margin-bottom: 50px;
+}
+
+.pixel-border-card.active-card {
+  animation: float 2s infinite ease-in-out;
 }
 
 .badge {

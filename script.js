@@ -52,6 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const circleCenterX = circleRect.left - containerRect.left + circleRect.width/2;
 
       card.style.display = "block";
+      card.classList.add("active-card");
       const cardWidth = card.offsetWidth;
 
       if(index === 0) {
@@ -68,7 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
         card.style.transform = "none";
       }
 
-      timelineLine.style.marginTop = "220px";
+      timelineLine.style.marginTop = "240px";
     });
   });
 
@@ -76,7 +77,10 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!card.contains(e.target)) {
       circles.forEach(c => c.classList.remove("active-circle"));
       card.style.display = "none";
+      card.classList.remove("active-card");
       timelineLine.style.marginTop = "0";
     }
   });
+
+  circles[0].click();
 });
