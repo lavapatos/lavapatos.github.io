@@ -114,9 +114,38 @@
 }
 
 .pixel-border-card.active-card {
-  animation: float 2s infinite ease-in-out;
+  animation: float 1.25s infinite ease-in-out;
 }
 
 .badge {
   margin: 0.25rem;
 }
+
+.skill-block {
+  padding: 0.4rem;
+  text-align: center;
+  background: white;
+}
+
+.skill-icon {
+  font-size: 1.5rem;
+}
+
+.skill-name {
+  font-size: 0.75rem;
+  line-height: 1;
+}
+/*
+.fa-code { color: #004482; }
+.fa-css3-alt { color: #1572B6; }
+.fa-js-square { color: #F7DF1E; }
+.fa-java { color: #007396; }
+*/
+
+.fa-code, .fa-css3-alt, .fa-java, .fa-js-square { color: black; }
+
+
+
+
+
+
