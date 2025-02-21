@@ -84,3 +84,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
   circles[0].click();
 });
+
+document.querySelectorAll('.skill-block').forEach(block => {
+  block.addEventListener('click', function(e) {
+    e.stopPropagation();
+    document.querySelectorAll('.skill-block').forEach(b => b.classList.remove('clicked'));
+    this.classList.add('clicked');
+  });
+});
+
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('.skill-block')) {
+    document.querySelectorAll('.skill-block').forEach(b => b.classList.remove('clicked'));
+  }
+});
