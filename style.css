@@ -198,3 +198,8 @@ opacity: 1;
   display: block;
 }
 }
+
+footer {
+  border-top: 3px solid #000;
+  margin-top: 2rem;
+}
