@@ -57,8 +57,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const clickedCard = e.target.closest('.pixel-border-card');
     if (!clickedSkill && !clickedCircle && !clickedCard) {
       document.querySelectorAll('.skill-block').forEach(b => b.classList.remove('clicked'));
-      document.querySelectorAll('.text-insert').forEach(t => t.classList.remove('active'));
-      document.querySelectorAll('.skills-grid-container').forEach(c => c.style.gridGap = '4px');
+      document.querySelectorAll('.text-insert').forEach(t => {
+        t.classList.remove('active');
+        if (window.innerWidth >= 768) t.remove();
+      });
+      document.querySelectorAll('.skills-grid-container').forEach(c => {
+        c.style.gridGap = '4px';
+        if (window.innerWidth >= 768) c.style.gridGap = '';
+      });
       circles.forEach(c => c.classList.remove("active-circle"));
       card.style.display = "none";
       card.classList.remove("active-card");
@@ -124,7 +130,10 @@ document.querySelectorAll('.skill-block').forEach(block => {
       textInsert.classList.add('active');
       if (!isMobile) container.style.gridGap = '24px';
     } else {
-      if (!isMobile) container.style.gridGap = '4px';
+      if (!isMobile) {
+        container.style.gridGap = '4px';
+        textInsert.remove();
+      }
     }
   });
 });

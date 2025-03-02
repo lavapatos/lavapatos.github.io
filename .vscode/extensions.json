@@ -1,0 +1,15 @@
+{
+    "recommendations": [
+        "ms-vscode.cmake-tools",
+        "ms-vscode.vscode-typescript-next",
+        "mgmcdermott.vscode-language-babel",
+        "ms-vscode.cpptools",
+        "ms-vscode.cpptools-extension-pack",
+        "ms-vscode.cpptools-themes",
+        "twxs.cmake",
+        "vscjava.vscode-java-debug",
+        "mikestead.dotenv",
+        "dsznajder.es7-react-js-snippets",
+        "vscjava.vscode-java-pack"
+    ]
+}
