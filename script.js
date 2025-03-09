@@ -2,13 +2,45 @@ document.addEventListener("DOMContentLoaded", () => {
   const card = document.querySelector(".pixel-border-card");
   const circles = document.querySelectorAll(".circle");
   const timelineLine = document.querySelector(".timeline-line");
-
+  const mobileCase = document.querySelector(".ps2-case");
+  const mobileTitle = document.querySelector(".current-work-title");
+  
   const cardsData = [
     {title:"CruzRoja",text:"blablabla",tags:["Tobar","Teleco","Tag1"]},
     {title:"AyudanteTulon",text:"blablabla",tags:["LaTex","tag2","tag1"]},
     {title:"Tutor",text:"blablabla",tags:["EDA","tag2","tag1"]},
     {title:"MesaEstudio",text:"blablabla",tags:["tag3","tag2","tag1"]}
   ];
+
+  let touchStartX = 0;
+  let currentMobileIndex = 0;
+  
+  function updateMobileCard(index) {
+    const data = cardsData[index];
+    mobileCase.querySelector(".work-title").textContent = data.title;
+    mobileCase.querySelector(".work-text").textContent = data.text;
+    const tagsContainer = mobileCase.querySelector(".tags-container");
+    tagsContainer.innerHTML = "";
+    data.tags.forEach(tag => {
+      const badge = document.createElement("div");
+      badge.className = "badge bg-dark";
+      badge.textContent = tag;
+      tagsContainer.appendChild(badge);
+    });
+    mobileTitle.textContent = data.title;
+  }
+
+  function handleSwipe(direction) {
+    if (direction === 'left' && currentMobileIndex < cardsData.length - 1) currentMobileIndex++;
+    else if (direction === 'right' && currentMobileIndex > 0) currentMobileIndex--;
+    updateMobileCard(currentMobileIndex);
+  }
+
+  mobileCase.addEventListener('touchstart', e => touchStartX = e.touches[0].clientX);
+  mobileCase.addEventListener('touchend', e => {
+    const deltaX = e.changedTouches[0].clientX - touchStartX;
+    if (Math.abs(deltaX) > 30) handleSwipe(deltaX > 0 ? 'right' : 'left');
+  });
 
   circles.forEach((circle, index) => {
     circle.addEventListener("click", (e) => {
@@ -72,75 +104,76 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  circles[0].click();
-});
+  document.querySelectorAll('.skill-block').forEach(block => {
+    block.addEventListener('click', function(e) {
+      e.stopPropagation();
+      const container = this.closest('.skills-grid-container');
+      const isMobile = window.innerWidth < 768;
+      let textInsert = container.querySelector('.text-insert');
+      
+      if (!textInsert) {
+        textInsert = document.createElement('div');
+        textInsert.className = 'text-insert';
+        if (!isMobile) container.children[3].after(textInsert);
+        else container.append(textInsert);
+      }
 
-document.querySelectorAll('.skill-block').forEach(block => {
-  block.addEventListener('click', function(e) {
-    e.stopPropagation();
-    const container = this.closest('.skills-grid-container');
-    const isMobile = window.innerWidth < 768;
-    let textInsert = container.querySelector('.text-insert');
-    
-    if (!textInsert) {
-      textInsert = document.createElement('div');
-      textInsert.className = 'text-insert';
-      if (!isMobile) container.children[3].after(textInsert);
-      else container.append(textInsert);
-    }
+      if (isMobile) {
+        const allSkills = Array.from(container.querySelectorAll('.skill-block'));
+        const index = allSkills.indexOf(this);
+        const containerRect = container.getBoundingClientRect();
+        const gridGap = 8;
 
-    if (isMobile) {
-      const allSkills = Array.from(container.querySelectorAll('.skill-block'));
-      const index = allSkills.indexOf(this);
-      const containerRect = container.getBoundingClientRect();
-      const gridGap = 8;
+        let topPos = 0;
+        let bottomPos = 0;
 
-      let topPos = 0;
-      let bottomPos = 0;
+        if (index === 0) {
+          const currentRect = this.getBoundingClientRect();
+          const nextRect = allSkills[1].getBoundingClientRect();
+          topPos = currentRect.top - containerRect.top;
+          bottomPos = nextRect.bottom - containerRect.top;
+        } else if (index === allSkills.length - 1) {
+          const currentRect = this.getBoundingClientRect();
+          const prevRect = allSkills[index-1].getBoundingClientRect();
+          topPos = prevRect.top - containerRect.top;
+          bottomPos = currentRect.bottom - containerRect.top;
+        } else {
+          const prevRect = allSkills[index-1].getBoundingClientRect();
+          const nextRect = allSkills[index+1].getBoundingClientRect();
+          topPos = prevRect.top + (prevRect.height/2) - containerRect.top;
+          bottomPos = nextRect.top + (nextRect.height/2) - containerRect.top;
+        }
 
-      if (index === 0) {
-        const currentRect = this.getBoundingClientRect();
-        const nextRect = allSkills[1].getBoundingClientRect();
-        topPos = currentRect.top - containerRect.top;
-        bottomPos = nextRect.bottom - containerRect.top;
-      } else if (index === allSkills.length - 1) {
-        const currentRect = this.getBoundingClientRect();
-        const prevRect = allSkills[index-1].getBoundingClientRect();
-        topPos = prevRect.top - containerRect.top;
-        bottomPos = currentRect.bottom - containerRect.top;
+        textInsert.style.top = `${topPos}px`;
+        textInsert.style.height = `${bottomPos - topPos}px`;
+      }
+
+      const wasActive = this.classList.contains('clicked');
+      
+      document.querySelectorAll('.text-insert').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.skill-block').forEach(b => b.classList.remove('clicked'));
+      
+      if (!wasActive) {
+        this.classList.add('clicked');
+        textInsert.textContent = "skillname (placeholder): " + this.querySelector('.skill-name').textContent;
+        textInsert.classList.add('active');
+        if (!isMobile) container.style.gridGap = '24px';
       } else {
-        const prevRect = allSkills[index-1].getBoundingClientRect();
-        const nextRect = allSkills[index+1].getBoundingClientRect();
-        topPos = prevRect.top + (prevRect.height/2) - containerRect.top;
-        bottomPos = nextRect.top + (nextRect.height/2) - containerRect.top;
+        if (!isMobile) {
+          container.style.gridGap = '4px';
+          textInsert.remove();
+        }
       }
+    });
+  });
 
-      textInsert.style.top = `${topPos}px`;
-      textInsert.style.height = `${bottomPos - topPos}px`;
-    }
-
-    const wasActive = this.classList.contains('clicked');
-    
-    document.querySelectorAll('.text-insert').forEach(t => t.classList.remove('active'));
-    document.querySelectorAll('.skill-block').forEach(b => b.classList.remove('clicked'));
-    
-    if (!wasActive) {
-      this.classList.add('clicked');
-      textInsert.textContent = "skillname (placeholder): " + this.querySelector('.skill-name').textContent;
-      textInsert.classList.add('active');
-      if (!isMobile) container.style.gridGap = '24px';
-    } else {
-      if (!isMobile) {
-        container.style.gridGap = '4px';
-        textInsert.remove();
-      }
+  window.addEventListener('resize', () => {
+    if (window.innerWidth >= 768) {
+      document.querySelectorAll('.text-insert').forEach(t => t.remove());
+      document.querySelectorAll('.skill-block').forEach(b => b.classList.remove('clicked'));
     }
   });
-});
 
-window.addEventListener('resize', () => {
-  if (window.innerWidth >= 768) {
-    document.querySelectorAll('.text-insert').forEach(t => t.remove());
-    document.querySelectorAll('.skill-block').forEach(b => b.classList.remove('clicked'));
-  }
+  circles[0].click();
+  updateMobileCard(0);
 });
