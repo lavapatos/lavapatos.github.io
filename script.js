@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
   
   const cardsData = [
     {title:"CruzRoja",text:"blablabla",tags:["Tobar","Teleco","Tag1"]},
-    {title:"AyudanteTulon",text:"blablabla",tags:["LaTex","tag2","tag1"]},
+    {title:"AyudanteGrande",text:"blablabla",tags:["LaTex","tag2","tag1"]},
     {title:"Tutor",text:"blablabla",tags:["EDA","tag2","tag1"]},
     {title:"MesaEstudio",text:"blablabla",tags:["tag3","tag2","tag1"]}
   ];
